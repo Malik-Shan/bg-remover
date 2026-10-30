@@ -6,6 +6,8 @@ import { UTApi, UTFile } from 'uploadthing/server';
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const MAX_IMAGE_PIXELS = 32_000_000;
 const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const IMGLY_ASSET_BASE_URL =
+	'https://cdn.jsdelivr.net/npm/@imgly/background-removal-node@1.4.5/dist/';
 
 function isUploadThingHost(hostname: string): boolean {
 	return hostname === 'utfs.io' || hostname === 'ufs.sh' || /^[a-z0-9-]+\.ufs\.sh$/.test(hostname);
@@ -167,6 +169,7 @@ export async function processUploadedImage(fileKey: string, fileUrl: string) {
 		processedImage = await removeBackground(
 			new Blob([imageBytes.buffer as ArrayBuffer], { type: imageType }),
 			{
+				publicPath: IMGLY_ASSET_BASE_URL,
 				model: 'small',
 				output: { format: 'image/png' }
 			}

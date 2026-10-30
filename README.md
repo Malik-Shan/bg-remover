@@ -13,7 +13,7 @@ A SvelteKit app that uploads one image to UploadThing, removes its background on
 2. Copy `.env.example` to `.env` and set `UPLOADTHING_TOKEN`.
 3. Start the development server with `npm run dev`.
 
-The upload route accepts one image up to 4 MB. Supported processing formats are JPEG, PNG, and WebP. IMG.LY downloads its model assets on first use, so the first processing request may take longer.
+The upload route accepts one image up to 4 MB. Supported processing formats are JPEG, PNG, and WebP. IMG.LY downloads its model assets from jsDelivr on first use, so the first processing request may take longer. The asset URL in `src/lib/server/image-processing.ts` is version-pinned and should be kept in sync with `@imgly/background-removal-node` in `package.json`.
 
 ## Processing flow
 
