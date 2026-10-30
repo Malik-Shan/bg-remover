@@ -170,7 +170,7 @@ export async function processUploadedImage(fileKey: string, fileUrl: string) {
 			new Blob([imageBytes.buffer as ArrayBuffer], { type: imageType }),
 			{
 				publicPath: IMGLY_ASSET_BASE_URL,
-				model: 'small',
+				model: 'medium',
 				output: { format: 'image/png' }
 			}
 		);
